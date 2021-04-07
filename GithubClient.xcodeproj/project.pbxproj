@@ -16,6 +16,15 @@
 		CA50F811261DFC0200738F42 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA50F810261DFC0200738F42 /* Repository.swift */; };
 		CA50F819261DFC5300738F42 /* Owner.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA50F818261DFC5300738F42 /* Owner.swift */; };
 		CA50F81E261DFC7400738F42 /* UserType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA50F81D261DFC7400738F42 /* UserType.swift */; };
+		CA50F82D261DFE2100738F42 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA50F82C261DFE2100738F42 /* APIManager.swift */; };
+		CA50F83A261E044800738F42 /* Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA50F839261E044800738F42 /* Delegate.swift */; };
+		CA50F842261E059100738F42 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA50F841261E059100738F42 /* BaseViewController.swift */; };
+		CA50F84A261E06E900738F42 /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA50F849261E06E900738F42 /* HomePresenter.swift */; };
+		CA50F850261E07A700738F42 /* API.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA50F84F261E07A700738F42 /* API.plist */; };
+		CA50F85B261E091300738F42 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA50F85A261E091300738F42 /* UIView+.swift */; };
+		CA50F860261E09C000738F42 /* UIView+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA50F85F261E09C000738F42 /* UIView+Animations.swift */; };
+		CA50F865261E0AD400738F42 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA50F864261E0AD400738F42 /* ImageLoader.swift */; };
+		CA50F86A261E111400738F42 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA50F869261E111400738F42 /* APIError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +60,15 @@
 		CA50F810261DFC0200738F42 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		CA50F818261DFC5300738F42 /* Owner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Owner.swift; sourceTree = "<group>"; };
 		CA50F81D261DFC7400738F42 /* UserType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserType.swift; sourceTree = "<group>"; };
+		CA50F82C261DFE2100738F42 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
+		CA50F839261E044800738F42 /* Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delegate.swift; sourceTree = "<group>"; };
+		CA50F841261E059100738F42 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		CA50F849261E06E900738F42 /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
+		CA50F84F261E07A700738F42 /* API.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = API.plist; sourceTree = "<group>"; };
+		CA50F85A261E091300738F42 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
+		CA50F85F261E09C000738F42 /* UIView+Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Animations.swift"; sourceTree = "<group>"; };
+		CA50F864261E0AD400738F42 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
+		CA50F869261E111400738F42 /* APIError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +125,7 @@
 				CA50F80D261DFAA900738F42 /* Models */,
 				CA50F80F261DFABB00738F42 /* Service */,
 				CA50F80C261DFA9700738F42 /* Helper */,
+				CA50F84E261E076A00738F42 /* Extension */,
 			);
 			path = GithubClient;
 			sourceTree = "<group>";
@@ -133,8 +152,10 @@
 			isa = PBXGroup;
 			children = (
 				CA50F7D9261DF9A700738F42 /* LaunchScreen.storyboard */,
-				CA50F7CE261DF9A500738F42 /* AppDelegate.swift */,
 				CA50F7DC261DF9A700738F42 /* Info.plist */,
+				CA50F7CE261DF9A500738F42 /* AppDelegate.swift */,
+				CA50F841261E059100738F42 /* BaseViewController.swift */,
+				CA50F839261E044800738F42 /* Delegate.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -175,6 +196,10 @@
 		CA50F80F261DFABB00738F42 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				CA50F84F261E07A700738F42 /* API.plist */,
+				CA50F82C261DFE2100738F42 /* APIManager.swift */,
+				CA50F869261E111400738F42 /* APIError.swift */,
+				CA50F864261E0AD400738F42 /* ImageLoader.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -183,8 +208,18 @@
 			isa = PBXGroup;
 			children = (
 				CA50F7D2261DF9A500738F42 /* HomeVC.swift */,
+				CA50F849261E06E900738F42 /* HomePresenter.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		CA50F84E261E076A00738F42 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				CA50F85A261E091300738F42 /* UIView+.swift */,
+				CA50F85F261E09C000738F42 /* UIView+Animations.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -203,6 +238,8 @@
 			dependencies = (
 			);
 			name = GithubClient;
+			packageProductDependencies = (
+			);
 			productName = GithubClient;
 			productReference = CA50F7CB261DF9A500738F42 /* GithubClient.app */;
 			productType = "com.apple.product-type.application";
@@ -274,6 +311,8 @@
 				Base,
 			);
 			mainGroup = CA50F7C2261DF9A500738F42;
+			packageReferences = (
+			);
 			productRefGroup = CA50F7CC261DF9A500738F42 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -291,6 +330,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA50F7DB261DF9A700738F42 /* LaunchScreen.storyboard in Resources */,
+				CA50F850261E07A700738F42 /* API.plist in Resources */,
 				CA50F7D8261DF9A700738F42 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -318,9 +358,17 @@
 			files = (
 				CA50F7D3261DF9A500738F42 /* HomeVC.swift in Sources */,
 				CA50F81E261DFC7400738F42 /* UserType.swift in Sources */,
+				CA50F83A261E044800738F42 /* Delegate.swift in Sources */,
+				CA50F86A261E111400738F42 /* APIError.swift in Sources */,
+				CA50F84A261E06E900738F42 /* HomePresenter.swift in Sources */,
+				CA50F842261E059100738F42 /* BaseViewController.swift in Sources */,
+				CA50F860261E09C000738F42 /* UIView+Animations.swift in Sources */,
 				CA50F819261DFC5300738F42 /* Owner.swift in Sources */,
 				CA50F7CF261DF9A500738F42 /* AppDelegate.swift in Sources */,
+				CA50F82D261DFE2100738F42 /* APIManager.swift in Sources */,
+				CA50F85B261E091300738F42 /* UIView+.swift in Sources */,
 				CA50F811261DFC0200738F42 /* Repository.swift in Sources */,
+				CA50F865261E0AD400738F42 /* ImageLoader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
