@@ -6,10 +6,11 @@
 //
 
 import UIKit
+import JGProgressHUD
 
 class BaseViewController: UIViewController {
     
-    
+    private let hud = JGProgressHUD(style: .dark)
     
     func displayAlert(withMessage message: String, title: String? = nil, btnHandler: ((UIAlertAction)-> Void)? = nil) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -18,11 +19,11 @@ class BaseViewController: UIViewController {
     }
     
     func startLoading() {
-        
+        hud.show(in: self.view)
     }
     
     func dismissLoader() {
-        
+        hud.dismiss()
     }
     
     /// Handles errors by calling the specified method as demanded per project
