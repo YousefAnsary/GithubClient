@@ -19,7 +19,7 @@ class ImageLoader {
         }
         
         APIManager.default.get(URL: url, parameters: nil) { (data, res, err) in
-            guard err != nil else { completion(.failure(err!)); return }
+            guard err == nil else { completion(.failure(err!)); return }
             guard let data = data, let img = UIImage(data: data) else {
                 completion(.failure(APIError.invalidURL(url: url)))
                 return

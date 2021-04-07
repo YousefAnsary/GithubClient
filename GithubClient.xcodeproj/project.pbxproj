@@ -32,6 +32,9 @@
 		CA803089261E388900491519 /* HomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA803086261E388800491519 /* HomeView.xib */; };
 		CA80308A261E388900491519 /* RepositoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA803087261E388800491519 /* RepositoryCell.xib */; };
 		CA80308B261E388900491519 /* RepositoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA803088261E388800491519 /* RepositoryCell.swift */; };
+		CA803093261E3AB000491519 /* UITableView+Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA803092261E3AB000491519 /* UITableView+Register.swift */; };
+		CA803099261E3BF300491519 /* RepositoriesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA803098261E3BF300491519 /* RepositoriesRepository.swift */; };
+		CA80309E261E3C4600491519 /* RepositoriesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA80309D261E3C4600491519 /* RepositoriesService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +85,9 @@
 		CA803086261E388800491519 /* HomeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeView.xib; sourceTree = "<group>"; };
 		CA803087261E388800491519 /* RepositoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RepositoryCell.xib; sourceTree = "<group>"; };
 		CA803088261E388800491519 /* RepositoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryCell.swift; sourceTree = "<group>"; };
+		CA803092261E3AB000491519 /* UITableView+Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Register.swift"; sourceTree = "<group>"; };
+		CA803098261E3BF300491519 /* RepositoriesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesRepository.swift; sourceTree = "<group>"; };
+		CA80309D261E3C4600491519 /* RepositoriesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +143,7 @@
 				CA50F80B261DFA8800738F42 /* Assets */,
 				CA50F80E261DFAB000738F42 /* Modules */,
 				CA50F80D261DFAA900738F42 /* Models */,
+				CA803097261E3BDD00491519 /* Repository */,
 				CA50F80F261DFABB00738F42 /* Service */,
 				CA50F80C261DFA9700738F42 /* Helper */,
 				CA50F84E261E076A00738F42 /* Extension */,
@@ -215,6 +222,7 @@
 				CA50F82C261DFE2100738F42 /* APIManager.swift */,
 				CA50F869261E111400738F42 /* APIError.swift */,
 				CA50F864261E0AD400738F42 /* ImageLoader.swift */,
+				CA80309D261E3C4600491519 /* RepositoriesService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -238,8 +246,17 @@
 				CA50F85F261E09C000738F42 /* UIView+Animations.swift */,
 				CA803071261E326600491519 /* UIImageView+Loader.swift */,
 				CA803081261E377B00491519 /* UIViewController+.swift */,
+				CA803092261E3AB000491519 /* UITableView+Register.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		CA803097261E3BDD00491519 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				CA803098261E3BF300491519 /* RepositoriesRepository.swift */,
+			);
+			path = Repository;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -380,6 +397,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA803093261E3AB000491519 /* UITableView+Register.swift in Sources */,
 				CA50F7D3261DF9A500738F42 /* HomeVC.swift in Sources */,
 				CA50F81E261DFC7400738F42 /* UserType.swift in Sources */,
 				CA50F83A261E044800738F42 /* Delegate.swift in Sources */,
@@ -396,6 +414,8 @@
 				CA80308B261E388900491519 /* RepositoryCell.swift in Sources */,
 				CA50F811261DFC0200738F42 /* Repository.swift in Sources */,
 				CA50F865261E0AD400738F42 /* ImageLoader.swift in Sources */,
+				CA80309E261E3C4600491519 /* RepositoriesService.swift in Sources */,
+				CA803099261E3BF300491519 /* RepositoriesRepository.swift in Sources */,
 				CA803072261E326600491519 /* UIImageView+Loader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -5,40 +5,34 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
-        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <viewController id="3Rd-fN-ifW" customClass="HomeVC" customModule="GithubClient" customModuleProvider="target">
-            <view key="view" contentMode="scaleToFill" id="Zj3-Lq-jzn">
-                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                <subviews>
-                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1Cx-Mf-SZo">
-                        <rect key="frame" x="0.0" y="44" width="414" height="818"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </tableView>
-                </subviews>
-                <viewLayoutGuide key="safeArea" id="ihC-9o-juj"/>
-                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                <constraints>
-                    <constraint firstItem="ihC-9o-juj" firstAttribute="bottom" secondItem="1Cx-Mf-SZo" secondAttribute="bottom" id="57P-Y2-Sbu"/>
-                    <constraint firstItem="1Cx-Mf-SZo" firstAttribute="leading" secondItem="ihC-9o-juj" secondAttribute="leading" id="7gd-vs-ySs"/>
-                    <constraint firstItem="ihC-9o-juj" firstAttribute="trailing" secondItem="1Cx-Mf-SZo" secondAttribute="trailing" id="HJv-oe-5Ac"/>
-                    <constraint firstItem="1Cx-Mf-SZo" firstAttribute="top" secondItem="ihC-9o-juj" secondAttribute="top" id="krG-Et-kfr"/>
-                </constraints>
-            </view>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeVC" customModule="GithubClient" customModuleProvider="target">
             <connections>
-                <outlet property="repositoriesTV" destination="1Cx-Mf-SZo" id="2Uy-2m-hnI"/>
+                <outlet property="repositoriesTV" destination="1Cx-Mf-SZo" id="40h-4Z-gfp"/>
+                <outlet property="view" destination="Zj3-Lq-jzn" id="GBq-LQ-TyF"/>
             </connections>
-            <point key="canvasLocation" x="-203" y="134"/>
-        </viewController>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="Zj3-Lq-jzn">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1Cx-Mf-SZo">
+                    <rect key="frame" x="0.0" y="50" width="414" height="812"/>
+                    <color key="backgroundColor" red="0.1243676767" green="0.1392206252" blue="0.19235891099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </tableView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="ihC-9o-juj"/>
+            <color key="backgroundColor" red="0.2110222578" green="0.225161165" blue="0.2746024728" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="ihC-9o-juj" firstAttribute="bottom" secondItem="1Cx-Mf-SZo" secondAttribute="bottom" id="57P-Y2-Sbu"/>
+                <constraint firstItem="1Cx-Mf-SZo" firstAttribute="leading" secondItem="ihC-9o-juj" secondAttribute="leading" id="7gd-vs-ySs"/>
+                <constraint firstItem="ihC-9o-juj" firstAttribute="trailing" secondItem="1Cx-Mf-SZo" secondAttribute="trailing" id="HJv-oe-5Ac"/>
+                <constraint firstItem="1Cx-Mf-SZo" firstAttribute="top" secondItem="ihC-9o-juj" secondAttribute="top" constant="6" id="krG-Et-kfr"/>
+            </constraints>
+            <point key="canvasLocation" x="-559" y="-510"/>
+        </view>
     </objects>
-    <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-    </resources>
 </document>

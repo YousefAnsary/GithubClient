@@ -10,38 +10,64 @@ import UIKit
 class HomeVC: BaseViewController {
 
     @IBOutlet private weak var repositoriesTV: UITableView!
+    private var refreshControl: UIRefreshControl!
     var presenter: HomePresenter?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupTableView()
+        startLoading()
+        presenter?.getRepositories()
     }
     
     private func setupTableView() {
-        repositoriesTV.register(UINib(nibName: "RepositoryCell", bundle: nil), forCellReuseIdentifier: "RepositoryCell")
+        repositoriesTV.register(RepositoryCell.self)
         repositoriesTV.delegate = self
         repositoriesTV.dataSource = self
-        let refreshControl = UIRefreshControl()
+        refreshControl = UIRefreshControl()
+        refreshControl.tintColor = .white
         repositoriesTV.addSubview(refreshControl)
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
     }
     
     @objc func refresh() {
-        
+        presenter?.getRepositories()
     }
 
 
 }
 
+extension HomeVC: HomeDelegate {
+    
+    func repositoriesDidLoad() {
+        dismissLoader()
+        refreshControl.endRefreshing()
+        repositoriesTV.reloadData()
+    }
+    
+    func repositoriesFetchDidFailed(withError error: Error) {
+        dismissLoader()
+        refreshControl.endRefreshing()
+        self.handleError(error: error)
+    }
+    
+}
+
 extension HomeVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return presenter!.repositoriesCount
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "RepositoryCell") as! RepositoryCell
+        var cell: RepositoryCell = tableView.dequeue()
+        presenter?.setupCell(&cell, atIndex: indexPath)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        140
     }
     
 }

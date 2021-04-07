@@ -29,7 +29,7 @@ class APIManager {
         
         URLSession.shared.dataTask(with: url) { (data, res, err) in
             completion(data, res, err)
-        }
+        }.resume()
         
     }
     
