@@ -29,6 +29,16 @@
 		CA803072261E326600491519 /* UIImageView+Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA803071261E326600491519 /* UIImageView+Loader.swift */; };
 		CA803077261E340D00491519 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA803076261E340D00491519 /* AppCoordinator.swift */; };
 		CA803082261E377B00491519 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA803081261E377B00491519 /* UIViewController+.swift */; };
+		CA803089261E388900491519 /* HomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA803086261E388800491519 /* HomeView.xib */; };
+		CA80308A261E388900491519 /* RepositoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA803087261E388800491519 /* RepositoryCell.xib */; };
+		CA80308B261E388900491519 /* RepositoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA803088261E388800491519 /* RepositoryCell.swift */; };
+		CA803093261E3AB000491519 /* UITableView+Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA803092261E3AB000491519 /* UITableView+Register.swift */; };
+		CA803099261E3BF300491519 /* RepositoriesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA803098261E3BF300491519 /* RepositoriesRepository.swift */; };
+		CA80309E261E3C4600491519 /* RepositoriesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA80309D261E3C4600491519 /* RepositoriesService.swift */; };
+		CAAB9FAA261F03E700152927 /* JSONHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB9FA9261F03E700152927 /* JSONHelper.swift */; };
+		CAAB9FAF261F0C1900152927 /* License.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB9FAE261F0C1900152927 /* License.swift */; };
+		CAAB9FB4261F0C3F00152927 /* RepositoriesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB9FB3261F0C3F00152927 /* RepositoriesResponse.swift */; };
+		CAAB9FB9261F16E700152927 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB9FB8261F16E700152927 /* DateHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +86,16 @@
 		CA803071261E326600491519 /* UIImageView+Loader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Loader.swift"; sourceTree = "<group>"; };
 		CA803076261E340D00491519 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		CA803081261E377B00491519 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
+		CA803086261E388800491519 /* HomeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeView.xib; sourceTree = "<group>"; };
+		CA803087261E388800491519 /* RepositoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RepositoryCell.xib; sourceTree = "<group>"; };
+		CA803088261E388800491519 /* RepositoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryCell.swift; sourceTree = "<group>"; };
+		CA803092261E3AB000491519 /* UITableView+Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Register.swift"; sourceTree = "<group>"; };
+		CA803098261E3BF300491519 /* RepositoriesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesRepository.swift; sourceTree = "<group>"; };
+		CA80309D261E3C4600491519 /* RepositoriesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesService.swift; sourceTree = "<group>"; };
+		CAAB9FA9261F03E700152927 /* JSONHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONHelper.swift; sourceTree = "<group>"; };
+		CAAB9FAE261F0C1900152927 /* License.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = License.swift; sourceTree = "<group>"; };
+		CAAB9FB3261F0C3F00152927 /* RepositoriesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesResponse.swift; sourceTree = "<group>"; };
+		CAAB9FB8261F16E700152927 /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +151,7 @@
 				CA50F80B261DFA8800738F42 /* Assets */,
 				CA50F80E261DFAB000738F42 /* Modules */,
 				CA50F80D261DFAA900738F42 /* Models */,
+				CA803097261E3BDD00491519 /* Repository */,
 				CA50F80F261DFABB00738F42 /* Service */,
 				CA50F80C261DFA9700738F42 /* Helper */,
 				CA50F84E261E076A00738F42 /* Extension */,
@@ -180,6 +201,8 @@
 		CA50F80C261DFA9700738F42 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				CAAB9FA9261F03E700152927 /* JSONHelper.swift */,
+				CAAB9FB8261F16E700152927 /* DateHelper.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -190,6 +213,8 @@
 				CA50F810261DFC0200738F42 /* Repository.swift */,
 				CA50F818261DFC5300738F42 /* Owner.swift */,
 				CA50F81D261DFC7400738F42 /* UserType.swift */,
+				CAAB9FAE261F0C1900152927 /* License.swift */,
+				CAAB9FB3261F0C3F00152927 /* RepositoriesResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -209,6 +234,7 @@
 				CA50F82C261DFE2100738F42 /* APIManager.swift */,
 				CA50F869261E111400738F42 /* APIError.swift */,
 				CA50F864261E0AD400738F42 /* ImageLoader.swift */,
+				CA80309D261E3C4600491519 /* RepositoriesService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -216,8 +242,11 @@
 		CA50F822261DFCAA00738F42 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				CA803086261E388800491519 /* HomeView.xib */,
 				CA50F7D2261DF9A500738F42 /* HomeVC.swift */,
 				CA50F849261E06E900738F42 /* HomePresenter.swift */,
+				CA803087261E388800491519 /* RepositoryCell.xib */,
+				CA803088261E388800491519 /* RepositoryCell.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -229,8 +258,17 @@
 				CA50F85F261E09C000738F42 /* UIView+Animations.swift */,
 				CA803071261E326600491519 /* UIImageView+Loader.swift */,
 				CA803081261E377B00491519 /* UIViewController+.swift */,
+				CA803092261E3AB000491519 /* UITableView+Register.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		CA803097261E3BDD00491519 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				CA803098261E3BF300491519 /* RepositoriesRepository.swift */,
+			);
+			path = Repository;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -343,7 +381,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA50F7DB261DF9A700738F42 /* LaunchScreen.storyboard in Resources */,
+				CA803089261E388900491519 /* HomeView.xib in Resources */,
 				CA50F850261E07A700738F42 /* API.plist in Resources */,
+				CA80308A261E388900491519 /* RepositoryCell.xib in Resources */,
 				CA50F7D8261DF9A700738F42 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -369,6 +409,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CAAB9FAA261F03E700152927 /* JSONHelper.swift in Sources */,
+				CA803093261E3AB000491519 /* UITableView+Register.swift in Sources */,
 				CA50F7D3261DF9A500738F42 /* HomeVC.swift in Sources */,
 				CA50F81E261DFC7400738F42 /* UserType.swift in Sources */,
 				CA50F83A261E044800738F42 /* Delegate.swift in Sources */,
@@ -376,14 +418,20 @@
 				CA50F86A261E111400738F42 /* APIError.swift in Sources */,
 				CA50F84A261E06E900738F42 /* HomePresenter.swift in Sources */,
 				CA50F842261E059100738F42 /* BaseViewController.swift in Sources */,
+				CAAB9FB9261F16E700152927 /* DateHelper.swift in Sources */,
+				CAAB9FAF261F0C1900152927 /* License.swift in Sources */,
+				CAAB9FB4261F0C3F00152927 /* RepositoriesResponse.swift in Sources */,
 				CA50F860261E09C000738F42 /* UIView+Animations.swift in Sources */,
 				CA50F819261DFC5300738F42 /* Owner.swift in Sources */,
 				CA50F7CF261DF9A500738F42 /* AppDelegate.swift in Sources */,
 				CA803082261E377B00491519 /* UIViewController+.swift in Sources */,
 				CA50F82D261DFE2100738F42 /* APIManager.swift in Sources */,
 				CA50F85B261E091300738F42 /* UIView+.swift in Sources */,
+				CA80308B261E388900491519 /* RepositoryCell.swift in Sources */,
 				CA50F811261DFC0200738F42 /* Repository.swift in Sources */,
 				CA50F865261E0AD400738F42 /* ImageLoader.swift in Sources */,
+				CA80309E261E3C4600491519 /* RepositoriesService.swift in Sources */,
+				CA803099261E3BF300491519 /* RepositoriesRepository.swift in Sources */,
 				CA803072261E326600491519 /* UIImageView+Loader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

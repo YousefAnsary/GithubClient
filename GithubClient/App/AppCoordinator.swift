@@ -20,7 +20,8 @@ class AppCoordinator {
     }
     
     func start() {
-        let vc = HomeVC(nibName: "Home", bundle: nil)
+        let vc = HomeVC(nibName: "HomeView", bundle: nil)
+        vc.presenter = HomePresenter(delegate: vc, repository: RepositoriesRepository())
         navigationController.pushViewController(vc, animated: true)
         window.rootViewController = navigationController
     }

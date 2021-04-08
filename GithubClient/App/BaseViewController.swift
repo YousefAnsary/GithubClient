@@ -19,11 +19,16 @@ class BaseViewController: UIViewController {
     }
     
     func startLoading() {
-        hud.show(in: self.view)
+        DispatchQueue.main.async {
+            self.hud.show(in: self.view)
+        }
+        
     }
     
     func dismissLoader() {
-        hud.dismiss()
+        DispatchQueue.main.async {
+            self.hud.dismiss()
+        }
     }
     
     /// Handles errors by calling the specified method as demanded per project

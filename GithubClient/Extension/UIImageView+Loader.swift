@@ -20,14 +20,17 @@ extension UIImageView {
         activityIndicator.startAnimating()
         
         ImageLoader.downloadImage(url: url) { res in
-            activityIndicator.stopAnimating()
-            activityIndicator.removeFromSuperview()
-            switch res {
-            case .success(let img):
-                self.image = img
-            case .failure(_):
-                self.image = defaultImage
+            DispatchQueue.main.async {
+                activityIndicator.stopAnimating()
+                activityIndicator.removeFromSuperview()
+                switch res {
+                case .success(let img):
+                    self.image = img
+                case .failure(_):
+                    self.image = defaultImage
+                }
             }
+            
         }
         
     }
