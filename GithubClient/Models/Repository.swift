@@ -40,16 +40,19 @@ class Repository: Codable {
     let cloneURL: String?
     let svnURL: String?
     let homepage: String?
-    let size, stargazersCount, watchersCount: Int?
+    let size, watchersCount: Int?
+    var stargazersCount: Int?
     var language: String?
-    let hasIssues, hasProjects, hasDownloads, hasWiki: Bool?
+    let hasProjects, hasDownloads, hasWiki: Bool?
+    var hasIssues: Bool?
     let hasPages: Bool?
     let forksCount: Int?
     let mirrorURL: String?
     let archived, disabled: Bool?
     let openIssuesCount: Int?
     let license: License?
-    let forks, openIssues, watchers: Int?
+    let forks, watchers: Int?
+    var openIssues: Int?
     let defaultBranch: String?
     let score: Int?
     
@@ -60,6 +63,9 @@ class Repository: Codable {
               let dict = try? JSONHelper.shared.dictionary(fromData: data) else { return }
         self.createdAt = dict["created_at"] as? String
         self.language = dict["language"] as? String
+        self.stargazersCount = dict["stargazers_count"] as? Int
+        self.hasIssues = dict["has_issues"] as? Bool
+        self.openIssues = dict["open_issues"] as? Int
     }
 
     enum CodingKeys: String, CodingKey {
