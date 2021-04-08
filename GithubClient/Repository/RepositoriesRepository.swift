@@ -10,8 +10,17 @@ import Foundation
 class RepositoriesRepository {
     
     private var repositories = [Repository]()
+    private var loadedPages = Set<Int>()
     
     func loadRemotely(page: Int, completion: @escaping(Result<[Repository], Error>)-> Void) {
+        
+        if loadedPages.contains(page) {
+            self.loadDetails(forItemsAtPage: page) {
+                completion(.success(Array(self.repositories[self.range(forPage: page)])))
+            }
+            return
+        }
+        
         RepositoriesService.getRepositories { res in
             switch res {
             case .success(let data):
@@ -19,10 +28,15 @@ class RepositoriesRepository {
                 self.loadDetails(forItemsAtPage: page) {
                     completion(.success(Array(self.repositories[self.range(forPage: page)])))
                 }
+                self.loadedPages.insert(page)
             case .failure(let err):
                 completion(.failure(err))
             }
         }
+    }
+    
+    func clearCache() {
+        loadedPages.removeAll()
     }
     
     private func loadDetails(forItemsAtPage page: Int, completion: @escaping()-> Void) {
