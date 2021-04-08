@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Repository: Codable {
+class Repository: Codable {
     let id: Int?
     let nodeID, name, fullName: String?
     let itemPrivate: Bool?
@@ -52,6 +52,15 @@ struct Repository: Codable {
     let forks, openIssues, watchers: Int?
     let defaultBranch: String?
     let score: Int?
+    
+    func loadDetails() {
+        if self.createdAt != nil {return}
+        guard let urlString = self.url, let url = URL(string: urlString) else {return}
+        guard let data = try? Data(contentsOf: url),
+              let dict = try? JSONHelper.shared.dictionary(fromData: data) else { return }
+        self.createdAt = dict["created_at"] as? String
+        self.language = dict["language"] as? String
+    }
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -123,4 +132,14 @@ struct Repository: Codable {
         case defaultBranch = "default_branch"
         case score
     }
+}
+
+extension Array where Element == Repository {
+    
+    mutating func loadDetails() {
+        for i in 0 ..< self.count {
+            self[i].loadDetails()
+        }
+    }
+    
 }

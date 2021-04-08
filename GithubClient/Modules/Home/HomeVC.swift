@@ -17,6 +17,7 @@ class HomeVC: BaseViewController {
         super.viewDidLoad()
         
         setupTableView()
+        setupSearchController()
         startLoading()
         presenter?.getRepositories()
     }
@@ -29,6 +30,15 @@ class HomeVC: BaseViewController {
         refreshControl.tintColor = .white
         repositoriesTV.addSubview(refreshControl)
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+    }
+    
+    private func setupSearchController() {
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search Repos"
+        navigationItem.searchController = searchController
+        self.definesPresentationContext = true
     }
     
     @objc func refresh() {
@@ -76,6 +86,19 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
             presenter?.paginate()
         }
     }
+    
+}
+
+extension HomeVC: UISearchResultsUpdating {
+    
+  func updateSearchResults(for searchController: UISearchController) {
+    let text = searchController.searchBar.text!
+//    guard text.count >= 2 else {
+//        presenter?.refresh()
+//        return
+//    }
+    presenter?.searchRepositories(withName: text)
+  }
     
 }
 
