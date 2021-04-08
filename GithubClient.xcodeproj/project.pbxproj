@@ -35,6 +35,10 @@
 		CA803093261E3AB000491519 /* UITableView+Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA803092261E3AB000491519 /* UITableView+Register.swift */; };
 		CA803099261E3BF300491519 /* RepositoriesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA803098261E3BF300491519 /* RepositoriesRepository.swift */; };
 		CA80309E261E3C4600491519 /* RepositoriesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA80309D261E3C4600491519 /* RepositoriesService.swift */; };
+		CAAB9FAA261F03E700152927 /* JSONHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB9FA9261F03E700152927 /* JSONHelper.swift */; };
+		CAAB9FAF261F0C1900152927 /* License.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB9FAE261F0C1900152927 /* License.swift */; };
+		CAAB9FB4261F0C3F00152927 /* RepositoriesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB9FB3261F0C3F00152927 /* RepositoriesResponse.swift */; };
+		CAAB9FB9261F16E700152927 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB9FB8261F16E700152927 /* DateHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +92,10 @@
 		CA803092261E3AB000491519 /* UITableView+Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Register.swift"; sourceTree = "<group>"; };
 		CA803098261E3BF300491519 /* RepositoriesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesRepository.swift; sourceTree = "<group>"; };
 		CA80309D261E3C4600491519 /* RepositoriesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesService.swift; sourceTree = "<group>"; };
+		CAAB9FA9261F03E700152927 /* JSONHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONHelper.swift; sourceTree = "<group>"; };
+		CAAB9FAE261F0C1900152927 /* License.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = License.swift; sourceTree = "<group>"; };
+		CAAB9FB3261F0C3F00152927 /* RepositoriesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesResponse.swift; sourceTree = "<group>"; };
+		CAAB9FB8261F16E700152927 /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,6 +201,8 @@
 		CA50F80C261DFA9700738F42 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				CAAB9FA9261F03E700152927 /* JSONHelper.swift */,
+				CAAB9FB8261F16E700152927 /* DateHelper.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -203,6 +213,8 @@
 				CA50F810261DFC0200738F42 /* Repository.swift */,
 				CA50F818261DFC5300738F42 /* Owner.swift */,
 				CA50F81D261DFC7400738F42 /* UserType.swift */,
+				CAAB9FAE261F0C1900152927 /* License.swift */,
+				CAAB9FB3261F0C3F00152927 /* RepositoriesResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -397,6 +409,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CAAB9FAA261F03E700152927 /* JSONHelper.swift in Sources */,
 				CA803093261E3AB000491519 /* UITableView+Register.swift in Sources */,
 				CA50F7D3261DF9A500738F42 /* HomeVC.swift in Sources */,
 				CA50F81E261DFC7400738F42 /* UserType.swift in Sources */,
@@ -405,6 +418,9 @@
 				CA50F86A261E111400738F42 /* APIError.swift in Sources */,
 				CA50F84A261E06E900738F42 /* HomePresenter.swift in Sources */,
 				CA50F842261E059100738F42 /* BaseViewController.swift in Sources */,
+				CAAB9FB9261F16E700152927 /* DateHelper.swift in Sources */,
+				CAAB9FAF261F0C1900152927 /* License.swift in Sources */,
+				CAAB9FB4261F0C3F00152927 /* RepositoriesResponse.swift in Sources */,
 				CA50F860261E09C000738F42 /* UIView+Animations.swift in Sources */,
 				CA50F819261DFC5300738F42 /* Owner.swift in Sources */,
 				CA50F7CF261DF9A500738F42 /* AppDelegate.swift in Sources */,
