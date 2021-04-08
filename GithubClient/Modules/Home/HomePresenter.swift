@@ -19,6 +19,7 @@ class HomePresenter {
     private var repositories: [Repository]?
     private var page = 1
     private var searchKeyword = ""
+//    private var searchTask: DispatchWorkItem?
     
     var repositoriesCount: Int {
         repositories?.count ?? 0
@@ -41,6 +42,16 @@ class HomePresenter {
     }
     
     func searchRepositories(withName name: String) {
+//        self.searchTask?.cancel()
+//        self.searchTask = DispatchWorkItem {
+//            self.searchRepositories(name: name)
+//        }
+//        DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + 0.5, execute: self.searchTask!)
+        searchRepositories(name: name)
+        
+    }
+    
+    private func searchRepositories(name: String) {
         page = 1
         
         guard !name.isEmpty else {
@@ -63,7 +74,6 @@ class HomePresenter {
                 self.delegate?.repositoriesFetchDidFailed(withError: err)
             }
         }
-        
     }
     
     func paginateRepositories(withName name: String) {
