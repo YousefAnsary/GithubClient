@@ -37,8 +37,9 @@
 		CA80309E261E3C4600491519 /* RepositoriesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA80309D261E3C4600491519 /* RepositoriesService.swift */; };
 		CAAB9FAA261F03E700152927 /* JSONHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB9FA9261F03E700152927 /* JSONHelper.swift */; };
 		CAAB9FAF261F0C1900152927 /* License.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB9FAE261F0C1900152927 /* License.swift */; };
-		CAAB9FB4261F0C3F00152927 /* RepositoriesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB9FB3261F0C3F00152927 /* RepositoriesResponse.swift */; };
 		CAAB9FB9261F16E700152927 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB9FB8261F16E700152927 /* DateHelper.swift */; };
+		CAAB9FBE261F8BF500152927 /* ArraySlice+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB9FBD261F8BF500152927 /* ArraySlice+.swift */; };
+		CAAB9FC3261F8C0600152927 /* Array+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB9FC2261F8C0600152927 /* Array+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,8 +95,9 @@
 		CA80309D261E3C4600491519 /* RepositoriesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesService.swift; sourceTree = "<group>"; };
 		CAAB9FA9261F03E700152927 /* JSONHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONHelper.swift; sourceTree = "<group>"; };
 		CAAB9FAE261F0C1900152927 /* License.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = License.swift; sourceTree = "<group>"; };
-		CAAB9FB3261F0C3F00152927 /* RepositoriesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesResponse.swift; sourceTree = "<group>"; };
 		CAAB9FB8261F16E700152927 /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
+		CAAB9FBD261F8BF500152927 /* ArraySlice+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ArraySlice+.swift"; sourceTree = "<group>"; };
+		CAAB9FC2261F8C0600152927 /* Array+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -214,7 +216,6 @@
 				CA50F818261DFC5300738F42 /* Owner.swift */,
 				CA50F81D261DFC7400738F42 /* UserType.swift */,
 				CAAB9FAE261F0C1900152927 /* License.swift */,
-				CAAB9FB3261F0C3F00152927 /* RepositoriesResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -259,6 +260,8 @@
 				CA803071261E326600491519 /* UIImageView+Loader.swift */,
 				CA803081261E377B00491519 /* UIViewController+.swift */,
 				CA803092261E3AB000491519 /* UITableView+Register.swift */,
+				CAAB9FBD261F8BF500152927 /* ArraySlice+.swift */,
+				CAAB9FC2261F8C0600152927 /* Array+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -420,12 +423,13 @@
 				CA50F842261E059100738F42 /* BaseViewController.swift in Sources */,
 				CAAB9FB9261F16E700152927 /* DateHelper.swift in Sources */,
 				CAAB9FAF261F0C1900152927 /* License.swift in Sources */,
-				CAAB9FB4261F0C3F00152927 /* RepositoriesResponse.swift in Sources */,
 				CA50F860261E09C000738F42 /* UIView+Animations.swift in Sources */,
+				CAAB9FC3261F8C0600152927 /* Array+.swift in Sources */,
 				CA50F819261DFC5300738F42 /* Owner.swift in Sources */,
 				CA50F7CF261DF9A500738F42 /* AppDelegate.swift in Sources */,
 				CA803082261E377B00491519 /* UIViewController+.swift in Sources */,
 				CA50F82D261DFE2100738F42 /* APIManager.swift in Sources */,
+				CAAB9FBE261F8BF500152927 /* ArraySlice+.swift in Sources */,
 				CA50F85B261E091300738F42 /* UIView+.swift in Sources */,
 				CA80308B261E388900491519 /* RepositoryCell.swift in Sources */,
 				CA50F811261DFC0200738F42 /* Repository.swift in Sources */,

@@ -10,13 +10,16 @@ import Foundation
 class RepositoriesRepository {
     
     private var repositories = [Repository]()
-    private var loadedPages = Set<Int>()
+    private var searchKeyword = ""
+    private var filteredRepos = [Repository]()
+    private let pageSize = 10
+//    private var loadedPages = Set<Int>()
     
-    func loadRemotely(page: Int, completion: @escaping(Result<[Repository], Error>)-> Void) {
+    func fetchRepos(page: Int, completion: @escaping(Result<[Repository], Error>)-> Void) {
         
-        if loadedPages.contains(page) {
+        if !repositories.isEmpty {
             self.loadDetails(forItemsAtPage: page) {
-                completion(.success(Array(self.repositories[self.range(forPage: page)])))
+                completion(.success(self.repositories.items(inPage: page, pageSize: self.pageSize).toArray()))
             }
             return
         }
@@ -26,22 +29,56 @@ class RepositoriesRepository {
             case .success(let data):
                 self.repositories = data
                 self.loadDetails(forItemsAtPage: page) {
-                    completion(.success(Array(self.repositories[self.range(forPage: page)])))
+                    completion(.success(self.repositories.items(inPage: page, pageSize: self.pageSize).toArray()))
                 }
-                self.loadedPages.insert(page)
+//                self.loadedPages.insert(page)
             case .failure(let err):
                 completion(.failure(err))
             }
         }
     }
     
+    func fetchRepos(withName name: String, page: Int, completion: @escaping (Result<[Repository], Error>)-> Void) {
+        
+        searchKeyword = name
+        
+        if repositories.isEmpty {
+            fetchRepos(page: 1) { res in
+                switch res {
+                case .success(_):
+                    self.filteredRepos = self.search(forReposWithName: name)
+                    completion(.success(self.filteredRepos.items(inPage: page, pageSize: self.pageSize).toArray()))
+                case .failure(let err):
+                    completion(.failure(err))
+                }
+            }
+            return
+        }
+        
+        DispatchQueue.global(qos: .background).async {
+            if name != self.searchKeyword {
+                self.filteredRepos = self.search(forReposWithName: name)
+            }
+            var items = self.filteredRepos.items(inPage: page, pageSize: self.pageSize).toArray()
+            items.loadDetails()
+            completion(.success(items))
+        }
+        
+    }
+    
+    private func search(forReposWithName name: String)-> [Repository] {
+        self.repositories.filter{ $0.name?.contains(name) ?? false }
+    }
+    
     func clearCache() {
-        loadedPages.removeAll()
+        repositories = []
+        filteredRepos = []
+//        loadedPages.removeAll()
     }
     
     private func loadDetails(forItemsAtPage page: Int, completion: @escaping()-> Void) {
         DispatchQueue.global(qos: .background).async {
-            for i in self.range(forPage: page){
+            for i in self.repositories.range(inPage: page, pageSize: self.pageSize) {
                 self.loadDetails(forItemAtIndex: i)
             }
             completion()
@@ -65,10 +102,6 @@ class RepositoriesRepository {
         }
     }
     
-    private func range(forPage page: Int)-> ClosedRange<Int> {
-        ((page - 1) * 10) ... min(self.repositories.count, page * 10)
-    }
-    
     private func formattedStringDate(fromString dateString: String)-> String {
         let currentDateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZ"
         let desiredDateFormat = "dd/MM/yy"
@@ -77,3 +110,6 @@ class RepositoriesRepository {
     }
     
 }
+
+
+
