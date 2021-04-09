@@ -38,10 +38,6 @@ class APIManager {
         get(URL: fullURL, parameters: parameters, completion: completion)
     }
     
-    func getImage(fromURL url: String, completion: ()-> Void) {
-        
-    }
-    
     private func queryString(fromDict dict: [String: Any]?)-> String? {
         return dict?.map { key, val in "\(key)=\(val)" }.joined(separator: "&")
     }

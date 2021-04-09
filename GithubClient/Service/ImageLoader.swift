@@ -4,45 +4,53 @@
 //
 //  Created by Yousef on 4/7/21.
 //
-
+//
 import UIKit
 
 class ImageLoader {
     
-    private static let imageCache = NSCache<AnyObject, UIImage>()
+    private var loadedImages = NSCache<AnyObject, UIImage>()//[URL: UIImage]()
+    private var runningRequests = [UUID: URLSessionDataTask]()
     
-    public static func downloadImage(url: String, completion: @escaping (Result<UIImage, Error>)-> Void) {
+    func cache(image: UIImage, url: String) {
+        loadedImages.setObject(image, forKey: url as AnyObject)
+    }
+    
+    func cachedImage(forUrl url: String)-> UIImage? {
+        return loadedImages.object(forKey: url as AnyObject)
+    }
+    
+    func loadImage(_ url: URL, _ completion: @escaping (Result<UIImage, Error>) -> Void) -> UUID? {
         
-        if let cachedImage = ImageLoader.cachedImage(forUrl: url) {
-            completion(.success(cachedImage))
-            return
+        if let image = cachedImage(forUrl: url.absoluteString) {
+            completion(.success(image))
+            return nil
         }
         
-        APIManager.default.get(URL: url, parameters: nil) { (data, res, err) in
-            guard err == nil else { completion(.failure(err!)); return }
-            guard let data = data, let img = UIImage(data: data) else {
-                completion(.failure(APIError.invalidURL(url: url)))
+        let uuid = UUID()
+        
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+            
+            defer {self.runningRequests.removeValue(forKey: uuid) }
+            
+            if let data = data, let image = UIImage(data: data) {
+                self.cache(image: image, url: url.absoluteString)
+                completion(.success(image))
                 return
             }
-            completion(.success(img))
+            
+            guard error == nil else { completion(.failure(error!)); return }
+            
         }
+        task.resume()
         
+        runningRequests[uuid] = task
+        return uuid
     }
     
-    static func clearCache(forUrl url: String) {
-        imageCache.removeObject(forKey: url as AnyObject)
-    }
-    
-    static func clearCache() {
-        imageCache.removeAllObjects()
-    }
-    
-    static func cache(image: UIImage, url: String) {
-        imageCache.setObject(image, forKey: url as AnyObject)
-    }
-    
-    static func cachedImage(forUrl url: String)-> UIImage? {
-        return imageCache.object(forKey: url as AnyObject)
+    func cancelLoad(_ uuid: UUID) {
+      runningRequests[uuid]?.cancel()
+      runningRequests.removeValue(forKey: uuid)
     }
     
 }

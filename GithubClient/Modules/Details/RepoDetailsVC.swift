@@ -37,7 +37,7 @@ extension RepoDetailsVC: RepoDetailsDelegate {
         self.languageLbl.text = data.language
         self.creationDateLbl.text = data.creationDate
         self.descriptionLbl.text = data.description
-        self.avatarImgView.loadImage(fromURL: data.avatarURL ?? "")
+        self.avatarImgView.loadImage(fromUrl: URL(string: data.avatarURL ?? ""))
         self.ownerNameLbl.text = data.ownerName
     }
     

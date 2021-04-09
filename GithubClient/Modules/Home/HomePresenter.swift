@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol HomeDelegate: class {
+protocol HomeDelegate: Delegate {
     func repositoriesDidLoad()
     func repositoriesFetchDidFailed(withError error: Error)
 }
@@ -15,131 +15,125 @@ protocol HomeDelegate: class {
 class HomePresenter {
     
     private weak var delegate: HomeDelegate?
-    private let repository: RepositoriesRepository
-    private var repositories: [Repository]?
-    private var page = 1
+    private var allRepos: [Repository]
+    private var repos: [Repository]?
+    private var pageSize = 10
     private var searchKeyword = ""
-//    private var searchTask: DispatchWorkItem?
-    
+    private(set) var page = 1
     var repositoriesCount: Int {
-        repositories?.count ?? 0
+        min(repos?.count ?? 0, page * pageSize)
     }
+    var totalPages: Int {
+        let reposCount = Double(repos?.count ?? 0)
+        let numOfPages = reposCount / Double(pageSize)
+        return Int(ceil(numOfPages))
+    }
+    private var searchTask: DispatchWorkItem?
     
-    init(delegate: HomeDelegate, repository: RepositoriesRepository) {
+    init(delegate: HomeDelegate) {
         self.delegate = delegate
-        self.repository = repository
+        self.allRepos = []
     }
     
-    func getRepositories() {
-        repository.fetchRepos(page: page) { [unowned self] res in
+    ///Loads repos and resets page to 1
+    func fetchRepos() {
+        page = 1
+        RepositoriesService.getRepositories(locally: false){ res in
             switch res {
-            case .success(let data):
-                DispatchQueue.main.async {
-                    self.repositoriesFetchSuccess(data)
-                }
+            case .success(let repos):
+                self.reposDidFetched(repos)
             case .failure(let err):
-                DispatchQueue.main.async {
-                    self.repositoriesFetchFailed(err)
-                }
+                self.reposFetchFailed(withError: err)
             }
         }
     }
     
-    func searchRepositories(withName name: String) {
-//        self.searchTask?.cancel()
-//        self.searchTask = DispatchWorkItem {
-//            self.searchRepositories(name: name)
-//        }
-//        DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + 0.5, execute: self.searchTask!)
-        searchRepositories(name: name)
+    ///Repos Fetch Success Handler
+    private func reposDidFetched(_ repos: [Repository]) {
+        self.allRepos = repos
+        self.repos = repos
+        delegateRepos()
+    }
+    
+    ///Repos Fetch Failure Handler
+    private func reposFetchFailed(withError error: Error) {
+        DispatchQueue.main.async {
+            self.delegate?.repositoriesFetchDidFailed(withError: error)
+        }
+    }
+    
+    ///Increments page to load more repos
+    func paginate() {
+        page += 1
+        delegateRepos()
+    }
+    
+    ///Searches repos with given name
+    func search(forReposWithName name: String) {
+        
+        //First time focus handle
+        if name.count == 0 && searchKeyword.count == 0 { return }
+        
+        searchTask?.cancel()
+        
+        searchTask = DispatchWorkItem(block: { self.searchRepos(forName: name) })
+        
+        DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + 0.5, execute: searchTask!)
         
     }
     
-    private func searchRepositories(name: String) {
+    private func searchRepos(forName name: String) {
         page = 1
         
-        guard !name.isEmpty else {
-            getRepositories()
+        //Canceling search (Erasing typed keyword)
+        if name.count == 0 && searchKeyword.count > 0 {
+            repos = allRepos
+            delegateRepos()
+            self.searchKeyword = name
             return
         }
         
+        //Empty list if only 1 char is typed (Business demand)
         if name.count == 1 {
-            self.repositories = []
+            repos = []
+            self.searchKeyword = name
             DispatchQueue.main.async {
                 self.delegate?.repositoriesDidLoad()
             }
             return
         }
         
-        searchKeyword = name
-        
-        repository.fetchRepos(withName: name, page: page) { res in
-            switch res {
-            case .success(let data):
-                self.repositories = data
-                DispatchQueue.main.async {
-                    self.delegate?.repositoriesDidLoad()
-                }
-            case .failure(let err):
-                DispatchQueue.main.async {
-                    self.delegate?.repositoriesFetchDidFailed(withError: err)
-                }
+        //More than one char start search on background thread
+        DispatchQueue.global(qos: .background).async {
+            self.repos = self.allRepos.filter{ $0.name?.lowercased().contains(name.lowercased()) ?? false }
+            self.delegateRepos()
+            self.searchKeyword = name
+        }
+    }
+    
+    ///Loads details for repos at current page then calles the delegate
+    private func delegateRepos() {
+        DispatchQueue.global(qos: .background).async {
+            var reposPage = self.repos?.items(inPage: self.page, pageSize: self.pageSize)
+            reposPage?.loadDetails()
+            DispatchQueue.main.async {
+                self.delegate?.repositoriesDidLoad()
             }
         }
     }
     
-    func paginateRepositories(withName name: String) {
-        repository.fetchRepos(withName: name, page: page) { res in
-            switch res {
-            case .success(let data):
-                self.repositories?.append(contentsOf: data)
-                DispatchQueue.main.async {
-                    self.delegate?.repositoriesDidLoad()
-                }
-            case .failure(let err):
-                DispatchQueue.main.async {
-                    self.delegate?.repositoriesFetchDidFailed(withError: err)
-                }
-            }
-        }
-    }
-    
-    func paginate() {
-        page += 1
-        if searchKeyword == "" {
-            getRepositories()
-        } else {
-            paginateRepositories(withName: searchKeyword)
-        }
-    }
-    
+    ///Reloads data remotely
     func refresh() {
-        page = 1
-        getRepositories()
+        fetchRepos()
     }
     
+    ///Returns repository object at given index
     func repository(atIndex index: Int)-> Repository? {
-        guard index < repositories?.count ?? 0 else {return nil}
-        return repositories?[index]
+        guard index < repos?.count ?? 0 else {return nil}
+        return repos![index]
     }
     
-    private func repositoriesFetchSuccess(_ data: [Repository]) {
-        if page == 1 {
-            self.repositories = data
-        } else {
-            self.repositories?.append(contentsOf: data)
-        }
-        DispatchQueue.main.async {
-            self.delegate?.repositoriesDidLoad()
-        }
-    }
-    
-    private func repositoriesFetchFailed(_ error: Error) {
-        DispatchQueue.main.async {
-            self.delegate?.repositoriesFetchDidFailed(withError: error)
-        }
-    }
-    
+    ///Configures cell at given index with appropriate data
     func setupCell(_ cell: inout RepositoryCell, atIndex index: IndexPath) {
         
         guard let item = repository(atIndex: index.row) else { return }
