@@ -9,6 +9,7 @@ import UIKit
 
 extension UIImageView {
     
+    ///Sets image for given url from cache, if not found image will be downloaded
     func loadImage(fromURL url: String, defaultImage: UIImage? = nil) {
         let activityIndicator = UIActivityIndicatorView(style: .white)
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false

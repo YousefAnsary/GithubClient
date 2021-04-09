@@ -47,7 +47,6 @@ class HomeVC: BaseViewController {
         presenter?.refresh()
     }
 
-
 }
 
 extension HomeVC: HomeDelegate {

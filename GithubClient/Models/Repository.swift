@@ -14,6 +14,9 @@ class Repository: Codable {
     let htmlURL: String?
     let itemDescription: String?
     let url: String?
+    var stargazersCount: Int?
+    var language: String?
+    var openIssues: Int?
     private var _createdAt: String?
     var createdAt: String? {
         guard _createdAt != nil else {return nil}
@@ -21,9 +24,8 @@ class Repository: Codable {
         let newFormat = "dd/M/yy"
         return DateHelper.shared.changeDateFormat(date: _createdAt!, sentDateFormat: currentFormat, desiredFormat: newFormat)
     }
-    var stargazersCount: Int?
-    var language: String?
-    var openIssues: Int?
+    
+    ///Loads repo details like language, stargazers, issues, date
     func loadDetails() {
         if self._createdAt != nil {return}
 //        print(id!)
@@ -53,6 +55,7 @@ class Repository: Codable {
 
 extension Array where Element == Repository {
     
+    ///Loops through all elemnts and load its details synchronously
     mutating func loadDetails() {
         for i in 0 ..< self.count {
             self[i].loadDetails()
@@ -63,6 +66,7 @@ extension Array where Element == Repository {
 
 extension ArraySlice where Element == Repository {
     
+    ///Loops through all elemnts and load its details synchronously
     mutating func loadDetails() {
         for i in startIndex ..< endIndex {
             self[i].loadDetails()

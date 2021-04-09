@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol HomeDelegate: class {
+protocol HomeDelegate: Delegate {
     func repositoriesDidLoad()
     func repositoriesFetchDidFailed(withError error: Error)
 }
@@ -111,7 +111,7 @@ class HomePresenter {
         }
     }
     
-    //
+    ///Loads details for repos at current page then calles the delegate
     private func delegateRepos() {
         DispatchQueue.global(qos: .background).async {
             var reposPage = self.repos?.items(inPage: self.page, pageSize: self.pageSize)
@@ -122,16 +122,18 @@ class HomePresenter {
         }
     }
     
+    ///Reloads data remotely
     func refresh() {
-        page = 1
         fetchRepos()
     }
     
+    ///Returns repository object at given index
     func repository(atIndex index: Int)-> Repository? {
         guard index < repos?.count ?? 0 else {return nil}
         return repos![index]
     }
     
+    ///Configures cell at given index with appropriate data
     func setupCell(_ cell: inout RepositoryCell, atIndex index: IndexPath) {
         
         guard let item = repository(atIndex: index.row) else { return }

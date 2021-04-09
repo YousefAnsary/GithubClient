@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol RepoDetailsDelegate: class {
+protocol RepoDetailsDelegate: Delegate {
     func setData(_ data: RepoDetailsVM)
 }
 

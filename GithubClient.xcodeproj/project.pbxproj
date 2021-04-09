@@ -39,7 +39,6 @@
 		CA86E73C26204E5900820E4E /* RepoDetailsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA86E73B26204E5900820E4E /* RepoDetailsCoordinator.swift */; };
 		CA86E74126205ADA00820E4E /* Response.json in Resources */ = {isa = PBXBuildFile; fileRef = CA86E74026205ADA00820E4E /* Response.json */; };
 		CAAB9FAA261F03E700152927 /* JSONHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB9FA9261F03E700152927 /* JSONHelper.swift */; };
-		CAAB9FAF261F0C1900152927 /* License.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB9FAE261F0C1900152927 /* License.swift */; };
 		CAAB9FB9261F16E700152927 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB9FB8261F16E700152927 /* DateHelper.swift */; };
 		CAAB9FBE261F8BF500152927 /* ArraySlice+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB9FBD261F8BF500152927 /* ArraySlice+.swift */; };
 		CAAB9FC3261F8C0600152927 /* Array+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB9FC2261F8C0600152927 /* Array+.swift */; };
@@ -103,7 +102,6 @@
 		CA86E73B26204E5900820E4E /* RepoDetailsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoDetailsCoordinator.swift; sourceTree = "<group>"; };
 		CA86E74026205ADA00820E4E /* Response.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Response.json; sourceTree = "<group>"; };
 		CAAB9FA9261F03E700152927 /* JSONHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONHelper.swift; sourceTree = "<group>"; };
-		CAAB9FAE261F0C1900152927 /* License.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = License.swift; sourceTree = "<group>"; };
 		CAAB9FB8261F16E700152927 /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
 		CAAB9FBD261F8BF500152927 /* ArraySlice+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ArraySlice+.swift"; sourceTree = "<group>"; };
 		CAAB9FC2261F8C0600152927 /* Array+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+.swift"; sourceTree = "<group>"; };
@@ -199,7 +197,6 @@
 				CA50F841261E059100738F42 /* BaseViewController.swift */,
 				CA50F839261E044800738F42 /* Delegate.swift */,
 				CA803076261E340D00491519 /* AppCoordinator.swift */,
-				CA86E74026205ADA00820E4E /* Response.json */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -208,6 +205,7 @@
 			isa = PBXGroup;
 			children = (
 				CA50F7D7261DF9A700738F42 /* Assets.xcassets */,
+				CA86E74026205ADA00820E4E /* Response.json */,
 			);
 			path = Assets;
 			sourceTree = "<group>";
@@ -227,7 +225,6 @@
 				CA50F810261DFC0200738F42 /* Repository.swift */,
 				CA50F818261DFC5300738F42 /* Owner.swift */,
 				CA50F81D261DFC7400738F42 /* UserType.swift */,
-				CAAB9FAE261F0C1900152927 /* License.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -443,7 +440,6 @@
 				CA50F84A261E06E900738F42 /* HomePresenter.swift in Sources */,
 				CA50F842261E059100738F42 /* BaseViewController.swift in Sources */,
 				CAAB9FB9261F16E700152927 /* DateHelper.swift in Sources */,
-				CAAB9FAF261F0C1900152927 /* License.swift in Sources */,
 				CAAB9FD1261FA48B00152927 /* RepoDetailsVC.swift in Sources */,
 				CA50F860261E09C000738F42 /* UIView+Animations.swift in Sources */,
 				CA86E73226204C3300820E4E /* RepoDetailsVM.swift in Sources */,
