@@ -15,7 +15,7 @@
 <br/>
 
 ### Workarounds
-The repositories endpoint does not feed you with all details demanded,<br/>
+The repositories endpoint does not feed you with all demanded details,<br/>
 so I had to fire request for each repository to fetch details like creation date, stargazers, issues, ... <br/>
-the way I did that was to fire request for each repository will be shown on the the screen (paginated 10 by 10) <br/>
+the way I did that was to fire request for each repository will be shown on the screen (paginated 10 by 10) <br/>
 synchronously one by one on a background thread then show the first 10 and that was repeated for each page got paginated.
