@@ -11,7 +11,9 @@ class HomeVC: BaseViewController {
 
     @IBOutlet private weak var repositoriesTV: UITableView!
     private var refreshControl: UIRefreshControl!
+    private var searchController: UISearchController!
     var presenter: HomePresenter?
+    var coordinator: HomeCoordinator?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +35,7 @@ class HomeVC: BaseViewController {
     }
     
     private func setupSearchController() {
-        let searchController = UISearchController(searchResultsController: nil)
+        searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search Repos"
@@ -87,16 +89,22 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        searchController.searchBar.endEditing(true)
+        coordinator?.navigateToDetails(forRepoAtIndex: indexPath.row)
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        searchController.searchBar.endEditing(true)
+        self.view.endEditing(true)
+    }
+    
 }
 
 extension HomeVC: UISearchResultsUpdating {
     
   func updateSearchResults(for searchController: UISearchController) {
     let text = searchController.searchBar.text!
-//    guard text.count >= 2 else {
-//        presenter?.refresh()
-//        return
-//    }
     presenter?.searchRepositories(withName: text)
   }
     

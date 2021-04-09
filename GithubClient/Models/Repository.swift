@@ -40,26 +40,33 @@ class Repository: Codable {
     let cloneURL: String?
     let svnURL: String?
     let homepage: String?
-    let size, stargazersCount, watchersCount: Int?
+    let size, watchersCount: Int?
+    var stargazersCount: Int?
     var language: String?
-    let hasIssues, hasProjects, hasDownloads, hasWiki: Bool?
+    let hasProjects, hasDownloads, hasWiki: Bool?
+    var hasIssues: Bool?
     let hasPages: Bool?
     let forksCount: Int?
     let mirrorURL: String?
     let archived, disabled: Bool?
     let openIssuesCount: Int?
     let license: License?
-    let forks, openIssues, watchers: Int?
+    let forks, watchers: Int?
+    var openIssues: Int?
     let defaultBranch: String?
     let score: Int?
     
     func loadDetails() {
         if self.createdAt != nil {return}
+        print(id!)
         guard let urlString = self.url, let url = URL(string: urlString) else {return}
         guard let data = try? Data(contentsOf: url),
               let dict = try? JSONHelper.shared.dictionary(fromData: data) else { return }
         self.createdAt = dict["created_at"] as? String
         self.language = dict["language"] as? String
+        self.stargazersCount = dict["stargazers_count"] as? Int
+        self.hasIssues = dict["has_issues"] as? Bool
+        self.openIssues = dict["open_issues"] as? Int
     }
 
     enum CodingKeys: String, CodingKey {
@@ -138,6 +145,16 @@ extension Array where Element == Repository {
     
     mutating func loadDetails() {
         for i in 0 ..< self.count {
+            self[i].loadDetails()
+        }
+    }
+    
+}
+
+extension ArraySlice where Element == Repository {
+    
+    mutating func loadDetails() {
+        for i in startIndex ..< endIndex {
             self[i].loadDetails()
         }
     }

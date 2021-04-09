@@ -34,9 +34,13 @@ class HomePresenter {
         repository.fetchRepos(page: page) { [unowned self] res in
             switch res {
             case .success(let data):
-                self.repositoriesFetchSuccess(data)
+                DispatchQueue.main.async {
+                    self.repositoriesFetchSuccess(data)
+                }
             case .failure(let err):
-                self.repositoriesFetchFailed(err)
+                DispatchQueue.main.async {
+                    self.repositoriesFetchFailed(err)
+                }
             }
         }
     }
@@ -61,17 +65,25 @@ class HomePresenter {
         
         if name.count == 1 {
             self.repositories = []
-            delegate?.repositoriesDidLoad()
+            DispatchQueue.main.async {
+                self.delegate?.repositoriesDidLoad()
+            }
             return
         }
+        
+        searchKeyword = name
         
         repository.fetchRepos(withName: name, page: page) { res in
             switch res {
             case .success(let data):
                 self.repositories = data
-                self.delegate?.repositoriesDidLoad()
+                DispatchQueue.main.async {
+                    self.delegate?.repositoriesDidLoad()
+                }
             case .failure(let err):
-                self.delegate?.repositoriesFetchDidFailed(withError: err)
+                DispatchQueue.main.async {
+                    self.delegate?.repositoriesFetchDidFailed(withError: err)
+                }
             }
         }
     }
@@ -81,9 +93,13 @@ class HomePresenter {
             switch res {
             case .success(let data):
                 self.repositories?.append(contentsOf: data)
-                self.delegate?.repositoriesDidLoad()
+                DispatchQueue.main.async {
+                    self.delegate?.repositoriesDidLoad()
+                }
             case .failure(let err):
-                self.delegate?.repositoriesFetchDidFailed(withError: err)
+                DispatchQueue.main.async {
+                    self.delegate?.repositoriesFetchDidFailed(withError: err)
+                }
             }
         }
     }
@@ -100,6 +116,11 @@ class HomePresenter {
     func refresh() {
         page = 1
         getRepositories()
+    }
+    
+    func repository(atIndex index: Int)-> Repository? {
+        guard index < repositories?.count ?? 0 else {return nil}
+        return repositories?[index]
     }
     
     private func repositoriesFetchSuccess(_ data: [Repository]) {
@@ -120,8 +141,8 @@ class HomePresenter {
     }
     
     func setupCell(_ cell: inout RepositoryCell, atIndex index: IndexPath) {
-        guard index.row < repositories?.count ?? 0,
-              let item = repositories?[index.row] else { return }
+        
+        guard let item = repository(atIndex: index.row) else { return }
         
         cell.configureCell(imgURL: item.owner?.avatarURL ?? "", name: item.name,
                            owner: "Creator: \(item.owner?.login ?? "")", creationDate: item.createdAt)
