@@ -33,7 +33,6 @@
 		CA80308A261E388900491519 /* RepositoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA803087261E388800491519 /* RepositoryCell.xib */; };
 		CA80308B261E388900491519 /* RepositoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA803088261E388800491519 /* RepositoryCell.swift */; };
 		CA803093261E3AB000491519 /* UITableView+Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA803092261E3AB000491519 /* UITableView+Register.swift */; };
-		CA803099261E3BF300491519 /* RepositoriesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA803098261E3BF300491519 /* RepositoriesRepository.swift */; };
 		CA80309E261E3C4600491519 /* RepositoriesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA80309D261E3C4600491519 /* RepositoriesService.swift */; };
 		CA86E73226204C3300820E4E /* RepoDetailsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA86E73126204C3300820E4E /* RepoDetailsVM.swift */; };
 		CA86E73726204C9400820E4E /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA86E73626204C9400820E4E /* HomeCoordinator.swift */; };
@@ -98,7 +97,6 @@
 		CA803087261E388800491519 /* RepositoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RepositoryCell.xib; sourceTree = "<group>"; };
 		CA803088261E388800491519 /* RepositoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryCell.swift; sourceTree = "<group>"; };
 		CA803092261E3AB000491519 /* UITableView+Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Register.swift"; sourceTree = "<group>"; };
-		CA803098261E3BF300491519 /* RepositoriesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesRepository.swift; sourceTree = "<group>"; };
 		CA80309D261E3C4600491519 /* RepositoriesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesService.swift; sourceTree = "<group>"; };
 		CA86E73126204C3300820E4E /* RepoDetailsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoDetailsVM.swift; sourceTree = "<group>"; };
 		CA86E73626204C9400820E4E /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
@@ -167,7 +165,6 @@
 				CA50F80B261DFA8800738F42 /* Assets */,
 				CA50F80E261DFAB000738F42 /* Modules */,
 				CA50F80D261DFAA900738F42 /* Models */,
-				CA803097261E3BDD00491519 /* Repository */,
 				CA50F80F261DFABB00738F42 /* Service */,
 				CA50F80C261DFA9700738F42 /* Helper */,
 				CA50F84E261E076A00738F42 /* Extension */,
@@ -281,14 +278,6 @@
 				CAAB9FC2261F8C0600152927 /* Array+.swift */,
 			);
 			path = Extension;
-			sourceTree = "<group>";
-		};
-		CA803097261E3BDD00491519 /* Repository */ = {
-			isa = PBXGroup;
-			children = (
-				CA803098261E3BF300491519 /* RepositoriesRepository.swift */,
-			);
-			path = Repository;
 			sourceTree = "<group>";
 		};
 		CAAB9FCA261FA45200152927 /* Details */ = {
@@ -471,7 +460,6 @@
 				CA86E73C26204E5900820E4E /* RepoDetailsCoordinator.swift in Sources */,
 				CA50F865261E0AD400738F42 /* ImageLoader.swift in Sources */,
 				CA80309E261E3C4600491519 /* RepositoriesService.swift in Sources */,
-				CA803099261E3BF300491519 /* RepositoriesRepository.swift in Sources */,
 				CA803072261E326600491519 /* UIImageView+Loader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

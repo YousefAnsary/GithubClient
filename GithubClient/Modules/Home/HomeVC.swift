@@ -21,7 +21,7 @@ class HomeVC: BaseViewController {
         setupTableView()
         setupSearchController()
         startLoading()
-        presenter?.getRepositories()
+        presenter?.fetchRepos()
     }
     
     private func setupTableView() {
@@ -44,7 +44,7 @@ class HomeVC: BaseViewController {
     }
     
     @objc func refresh() {
-        presenter?.getRepositories()
+        presenter?.refresh()
     }
 
 
@@ -83,7 +83,7 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if indexPath.row == presenter!.repositoriesCount - 1 {
+        if presenter!.page < presenter!.totalPages {
             startLoading()
             presenter?.paginate()
         }
@@ -105,7 +105,7 @@ extension HomeVC: UISearchResultsUpdating {
     
   func updateSearchResults(for searchController: UISearchController) {
     let text = searchController.searchBar.text!
-    presenter?.searchRepositories(withName: text)
+    presenter?.search(forReposWithName: text)
   }
     
 }

@@ -18,8 +18,7 @@ class HomeCoordinator {
     
     func start() {
         let vc = HomeVC(nibName: "HomeView", bundle: nil)
-        let repository = RepositoriesRepository()
-        self.presenter = HomePresenter(delegate: vc, repository: repository)
+        self.presenter = HomePresenter(delegate: vc)
         vc.presenter = presenter
         vc.coordinator = self
         navigationController.pushViewController(vc, animated: true)
