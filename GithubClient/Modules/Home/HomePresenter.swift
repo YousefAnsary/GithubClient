@@ -28,7 +28,7 @@ class HomePresenter {
         let numOfPages = reposCount / Double(pageSize)
         return Int(ceil(numOfPages))
     }
-//    private var searchTask: DispatchWorkItem?
+    private var searchTask: DispatchWorkItem?
     
     init(delegate: HomeDelegate) {
         self.delegate = delegate
@@ -74,6 +74,15 @@ class HomePresenter {
         //First time focus handle
         if name.count == 0 && searchKeyword.count == 0 { return }
         
+        searchTask?.cancel()
+        
+        searchTask = DispatchWorkItem(block: { self.searchRepos(forName: name) })
+        
+        DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + 0.5, execute: searchTask!)
+        
+    }
+    
+    private func searchRepos(forName name: String) {
         page = 1
         
         //Canceling search (Erasing typed keyword)
@@ -100,7 +109,6 @@ class HomePresenter {
             self.delegateRepos()
             self.searchKeyword = name
         }
-        
     }
     
     //
