@@ -14,21 +14,26 @@ class Repository: Codable {
     let htmlURL: String?
     let itemDescription: String?
     let url: String?
-    var createdAt: String?
+    private var _createdAt: String?
+    var createdAt: String? {
+        guard _createdAt != nil else {return nil}
+        let currentFormat = "yyyy-MM-dd'T'HH:mm:ssZZZ"
+        let newFormat = "dd/M/yy"
+        return DateHelper.shared.changeDateFormat(date: _createdAt!, sentDateFormat: currentFormat, desiredFormat: newFormat)
+    }
     var stargazersCount: Int?
     var language: String?
     var openIssues: Int?
-    
     func loadDetails() {
-        if self.createdAt != nil {return}
+        if self._createdAt != nil {return}
 //        print(id!)
         guard let urlString = self.url, let url = URL(string: urlString) else {return}
         guard let data = try? Data(contentsOf: url),
               let dict = try? JSONHelper.shared.dictionary(fromData: data) else { return }
-        self.createdAt = dict["created_at"] as? String
         self.language = dict["language"] as? String
         self.stargazersCount = dict["stargazers_count"] as? Int
         self.openIssues = dict["open_issues"] as? Int
+        self._createdAt = dict["created_at"] as? String
     }
 
     enum CodingKeys: String, CodingKey {
@@ -39,7 +44,7 @@ class Repository: Codable {
         case htmlURL = "html_url"
         case itemDescription = "description"
         case url
-        case createdAt = "created_at"
+        case _createdAt = "created_at"
         case stargazersCount = "stargazers_count"
         case language
         case openIssues = "open_issues"
