@@ -41,6 +41,7 @@ class HomeVC: BaseViewController {
         searchController.searchBar.placeholder = "Search Repos"
         navigationItem.searchController = searchController
         self.definesPresentationContext = true
+        navigationItem.hidesSearchBarWhenScrolling = false
     }
     
     @objc func refresh() {
