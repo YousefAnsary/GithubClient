@@ -58,6 +58,7 @@ class Repository: Codable {
     
     func loadDetails() {
         if self.createdAt != nil {return}
+        print(id!)
         guard let urlString = self.url, let url = URL(string: urlString) else {return}
         guard let data = try? Data(contentsOf: url),
               let dict = try? JSONHelper.shared.dictionary(fromData: data) else { return }
@@ -144,6 +145,16 @@ extension Array where Element == Repository {
     
     mutating func loadDetails() {
         for i in 0 ..< self.count {
+            self[i].loadDetails()
+        }
+    }
+    
+}
+
+extension ArraySlice where Element == Repository {
+    
+    mutating func loadDetails() {
+        for i in startIndex ..< endIndex {
             self[i].loadDetails()
         }
     }

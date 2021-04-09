@@ -14,6 +14,10 @@ class RepositoriesService {
 //        var params = ["page": String(page), "per_page": "10"]
 //        if name != nil { params["q"] = name! }
         
+//        let repos = localResponse()
+//        completion(repos != nil ? .success(repos!) : .failure(APIError.other(statusCode: 0, data: nil, error: nil)))
+//        return
+        
         APIManager.default.get(path: "repositories", parameters: nil) { data, res, err in
             guard err == nil else {
                 completion(.failure(err!))
@@ -37,6 +41,15 @@ class RepositoriesService {
             }
             
         }
+    }
+    
+    private class func localResponse()-> [Repository]? {
+        guard let path = Bundle.main.path(forResource: "Response", ofType: "json"),
+              let data = try? Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe),
+              let repos = try? JSONHelper.shared.decode(data, to: [Repository].self) else {
+            return nil
+        }
+        return repos
     }
     
 }

@@ -8,7 +8,7 @@
 import Foundation
 
 protocol RepoDetailsDelegate: class {
-    
+    func setData(_ data: RepoDetailsVM)
 }
 
 class RepoDetailsPresenter {
@@ -19,6 +19,18 @@ class RepoDetailsPresenter {
     init(delegate: RepoDetailsDelegate, repository: Repository) {
         self.delegate = delegate
         self.repository = repository
+    }
+    
+    func getRepoDetails() {
+        DispatchQueue.global(qos: .background).async {
+            if self.repository.createdAt == nil {
+                self.repository.loadDetails()
+            }
+            DispatchQueue.main.async {
+                self.delegate?.setData(RepoDetailsVM(repository: self.repository))
+            }
+        }
+        
     }
     
 }

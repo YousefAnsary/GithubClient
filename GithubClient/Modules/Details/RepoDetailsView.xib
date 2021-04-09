@@ -9,7 +9,18 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RepoDetailsVC" customModule="GithubClient" customModuleProvider="target">
+            <connections>
+                <outlet property="avatarImgView" destination="JTA-f2-JN4" id="jL9-Hm-VAh"/>
+                <outlet property="creationDateLbl" destination="tuv-ou-uUc" id="nuY-H9-Y4c"/>
+                <outlet property="descriptionLbl" destination="0te-zu-ziT" id="P2g-RI-seF"/>
+                <outlet property="issuesCountLbl" destination="jRt-Bb-4ml" id="8r8-Pq-BfK"/>
+                <outlet property="languageLbl" destination="ef8-ED-f46" id="wpF-f3-n1g"/>
+                <outlet property="ownerNameLbl" destination="1Zj-0M-6Ze" id="Ljd-2H-8I1"/>
+                <outlet property="starGazersCountLbl" destination="XL2-vN-ooV" id="r6D-Vt-M38"/>
+                <outlet property="view" destination="UoY-ds-d4n" id="x6l-II-jAu"/>
+            </connections>
+        </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="UoY-ds-d4n">
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>

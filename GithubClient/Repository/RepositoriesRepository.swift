@@ -40,8 +40,6 @@ class RepositoriesRepository {
     
     func fetchRepos(withName name: String, page: Int, completion: @escaping (Result<[Repository], Error>)-> Void) {
         
-        searchKeyword = name
-        
         if repositories.isEmpty {
             fetchRepos(page: 1) { res in
                 switch res {
@@ -62,12 +60,13 @@ class RepositoriesRepository {
             var items = self.filteredRepos.items(inPage: page, pageSize: self.pageSize).toArray()
             items.loadDetails()
             completion(.success(items))
+            self.searchKeyword = name
         }
         
     }
     
     private func search(forReposWithName name: String)-> [Repository] {
-        self.repositories.filter{ $0.name?.contains(name) ?? false }
+        self.repositories.filter{ $0.name?.lowercased().contains(name.lowercased()) ?? false }
     }
     
     func clearCache() {
@@ -78,9 +77,9 @@ class RepositoriesRepository {
     
     private func loadDetails(forItemsAtPage page: Int, completion: @escaping()-> Void) {
         DispatchQueue.global(qos: .background).async {
-            for i in self.repositories.range(inPage: page, pageSize: self.pageSize) {
-                self.loadDetails(forItemAtIndex: i)
-            }
+            var items = self.repositories.items(inPage: page, pageSize: self.pageSize)
+            #warning("load details")
+//            items.loadDetails()
             completion()
         }
     }
