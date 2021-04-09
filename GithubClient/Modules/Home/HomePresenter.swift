@@ -38,7 +38,7 @@ class HomePresenter {
     ///Loads repos and resets page to 1
     func fetchRepos() {
         page = 1
-        RepositoriesService.getRepositories(locally: true){ res in
+        RepositoriesService.getRepositories(locally: false){ res in
             switch res {
             case .success(let repos):
                 self.reposDidFetched(repos)
