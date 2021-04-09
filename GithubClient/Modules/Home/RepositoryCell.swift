@@ -14,8 +14,13 @@ class RepositoryCell: UITableViewCell {
     @IBOutlet private weak var ownerLbl: UILabel!
     @IBOutlet private weak var creationDateLbl: UILabel!
     
+    override func prepareForReuse() {
+        avatarImgView.image = nil
+        avatarImgView.cancelImageLoad()
+    }
+    
     func configureCell(imgURL: String, name: String?, owner: String?, creationDate: String?) {
-        avatarImgView.loadImage(fromURL: imgURL)
+        avatarImgView.loadImage(fromUrl: URL(string:imgURL))
         nameLbl.text = name
         ownerLbl.text = owner
         creationDateLbl.text = creationDate
